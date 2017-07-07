@@ -4,37 +4,42 @@ package enbledu.personal_link;
  * Created by enbodu on 7/5/17.
  */
 /**、、、、
+ *
+ * 构造方法：
+ * public Node MyLink()
+ * public Node MyLink(int[] datas)
+ *
  * method:
  *
- * add a new num
+ * 添加节点
  * public boolean addNode(int d);
  *
- * delete a Node according to the index or num
+ * 删除节点
  * public boolean deleteNode(int index);
  * public boolean deleteNode(int num);
  *
- * return the length
+ * 输出长度
  * public int length();
  *
- * print all the num
+ * 输出链表
  * public void printList();
  *
- * reverse the link
+ * 反转链表
  * public Node reverse(Node head);
  *
- * find the middle Node
+ * 寻找中间节点
  * public Node findTheMid(Node head);
  *
- * find the last k Node
+ * 寻找倒数第k个节点
  * public Node findElem(Node head, int k);
  *
- * sort the link
+ * 给链表排序
  * public void sort(Node head);
  *
- * delete the Duplecate
+ * 删除重复元素
  * public Node deleteDuplecate(Node head);
  *
- * print the reverselink
+ * 输出反转后的链表
  * public void printreverse(Node head);
  */
 
@@ -48,6 +53,24 @@ public class MyLink {
 
         public Node(int data) {
             this.data = data;
+        }
+    }
+
+    public MyLink (){
+
+    }
+
+    public MyLink(int[] datas) {
+        if (datas==null) {
+            return;
+        }
+        Node firstNode = new Node(datas[0]);
+        head = firstNode;
+        Node tmp = head;
+        for (int i=1; i<datas.length; i++) {
+            Node newNode = new Node(datas[i]);
+            tmp.next = newNode;
+            tmp = tmp.next;
         }
     }
 
@@ -72,19 +95,17 @@ public class MyLink {
             head = head.next;
             return true;
         }
-        int i = 1;
-        Node preNode = head;
-        Node curNode = preNode.next;
-        while (curNode != null) {
-            if (i == index) {
-                preNode.next = curNode.next;
-                return true;
+        Node pretmp = head;
+        Node tmp = pretmp.next;
+        for (int i=0; i<index-2; i++) {
+            if (tmp==null) {
+               return false;
             }
-            preNode = curNode;
-            curNode = curNode.next;
-            i++;
+            tmp = tmp.next;
+            pretmp = pretmp.next;
         }
-        return false;
+        pretmp = tmp.next;
+        return true;
     }
 
 
@@ -118,6 +139,30 @@ public class MyLink {
         }
     }
 
+    public Node reverse(Node head) {
+        return null;
+    }
+
+    public Node findTheMid(Node head) {
+        return null;
+    }
+
+    public Node findElem(Node head, int k) {
+        return null;
+    }
+
+    public void sort(Node head) {
+        return;
+    }
+
+    public Node deleteDuplecate(Node head) {
+        return null;
+    }
+
+    public void printreverse(Node head) {
+        return;
+    }
+
     public static void main(String[] args) {
         MyLink list = new MyLink();
         list.addNode(5);
@@ -132,5 +177,9 @@ public class MyLink {
         list.deleteNode(4);
         System.out.println("After deleteNode(4):");
         list.printList();
+
+        MyLink link2 = new MyLink(new int[]{1,2,3});
+        link2.printList();
+        link2.printList();
     }
 }
