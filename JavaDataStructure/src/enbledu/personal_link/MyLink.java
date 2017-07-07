@@ -158,8 +158,20 @@ public class MyLink {
         return;
     }
 
-    public Node findTheMid(Node head) {
-        return null;
+    public Node findTheMid() {
+        if (head == null) {
+            return null;
+        }
+        if (head.next == null) {
+            return head;
+        }
+        Node fasttmp = head;
+        Node slowtmp = head;
+        while (fasttmp.next.next != null) {
+            fasttmp = fasttmp.next.next;
+            slowtmp = slowtmp.next;
+        }
+        return slowtmp;
     }
 
     public Node findElem(Node head, int k) {
@@ -179,9 +191,11 @@ public class MyLink {
     }
 
     public static void main(String[] args) {
-        MyLink link2 = new MyLink(new int[]{1,2,3});
+        MyLink link2 = new MyLink(new int[]{1,2,3,4});
         link2.printList();
+        System.out.println(link2.findTheMid().data);
         link2.reverse();
+        System.out.println(link2.findTheMid().data);
         link2.printList();
     }
 }
