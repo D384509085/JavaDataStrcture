@@ -139,8 +139,23 @@ public class MyLink {
         }
     }
 
-    public Node reverse(Node head) {
-        return null;
+    public void reverse() {
+        if (head==null || head.next==null) {
+            return;
+        }
+        Node pretmp = head;
+        Node midtemp = head;
+        Node ahetmp = head.next;
+        head.next = null;
+        while (ahetmp.next!=null) {
+            midtemp = ahetmp;
+            ahetmp = ahetmp.next;
+            midtemp.next = pretmp;
+            pretmp = midtemp;
+        }
+        ahetmp.next = pretmp;
+        head = ahetmp;
+        return;
     }
 
     public Node findTheMid(Node head) {
@@ -164,22 +179,9 @@ public class MyLink {
     }
 
     public static void main(String[] args) {
-        MyLink list = new MyLink();
-        list.addNode(5);
-        list.addNode(3);
-        list.addNode(1);
-        list.addNode(2);
-        list.addNode(55);
-        list.addNode(36);
-        System.out.println("linkLength:" + list.length());
-        System.out.println("head.data:" + list.head.data);
-        list.printList();
-        list.deleteNode(4);
-        System.out.println("After deleteNode(4):");
-        list.printList();
-
         MyLink link2 = new MyLink(new int[]{1,2,3});
         link2.printList();
+        link2.reverse();
         link2.printList();
     }
 }
