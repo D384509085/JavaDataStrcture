@@ -197,7 +197,9 @@ public class MyLink {
     public Node deleteDuplecate(Node head) {
         //设链表不长于10000
         int[] count = new int[10000];
-        
+        Node pretmp = head;
+        Node midtmp = head;
+        Node ahetmp = head;
     }
 
     public void printreverse(MyLink link) {
