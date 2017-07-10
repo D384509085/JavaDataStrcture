@@ -195,11 +195,48 @@ public class MyLink {
     }
 
     public Node deleteDuplecate(Node head) {
+        if (head.next == null) {
+            return head;
+        }
+        if (head.next.next == null) {
+            if (head.data == head.next.data) {
+                head.next = null;
+                return head;
+            }
+            return head;
+        }
         //设链表不长于10000
         int[] count = new int[10000];
         Node pretmp = head;
-        Node midtmp = head;
-        Node ahetmp = head;
+        Node midtmp = head.next;
+        Node ahetmp = head.next.next;
+        count[head.data] = 1;
+        while (ahetmp!=null) {
+            if (count[midtmp.data] !=1) {
+                count[midtmp.data] = 1;
+                pretmp = pretmp.next;
+                midtmp = midtmp.next;
+                ahetmp = ahetmp.next;
+            }
+            else {
+                pretmp.next = ahetmp;
+                midtmp = ahetmp;
+                ahetmp = ahetmp.next;
+            }
+        }
+        if (count[midtmp.data] == 1) {
+            pretmp.next = ahetmp;
+            if (count[ahetmp.data] == 1) {
+                pretmp.next = null;
+            }
+        }
+        else {
+            count[midtmp.data] = 1;
+            if (count[ahetmp.data] == 1) {
+                midtmp.next = null;
+            }
+        }
+        return head;
     }
 
     public void printreverse(MyLink link) {
