@@ -195,11 +195,14 @@ public class MyLink {
     }
 
     public Node deleteDuplecate(Node head) {
-        return null;
+        //设链表不长于10000
+        int[] count = new int[10000];
+        
     }
 
-    public void printreverse(Node head) {
-        return;
+    public void printreverse(MyLink link) {
+        link.reverse();
+        link.printList();
     }
 
     public static void main(String[] args) {
