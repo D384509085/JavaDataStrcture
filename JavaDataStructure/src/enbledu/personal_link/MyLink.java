@@ -190,8 +190,52 @@ public class MyLink {
         return pretmp;
     }
 
-    public void sort(Node head) {
-        return;
+    public Node sort(Node head) {
+        if(head == null || head.next == null) return head;
+
+        Node left = new Node(0), leftHead = left;
+        Node right = new Node(0), rightHead = right;
+        Node mid = new Node(0), midHead = mid;
+        int data = head.data;
+
+        while(head != null) {
+            if(head.data < data) {
+                left.next = head;
+                left = head;
+            } else if(head.data > data) {
+                right.next = head;
+                right = head;
+            } else {
+                mid.next = head;
+                mid = head;
+            }
+            head = head.next;
+        }
+
+        left.next = null;
+        right.next = null;
+        mid.next = null;
+        return merge(sort(leftHead.next), midHead.next, sort(rightHead.next));
+    }
+
+    public Node merge(Node left, Node mid, Node right) {
+        Node leftTail = getTail(left);
+        Node midTail = getTail(mid);
+        midTail.next = right;
+        if(leftTail != null) {
+            leftTail.next = mid;
+            return left;
+        } else {
+            return mid;
+        }
+    }
+
+    public Node getTail(Node head) {
+        if(head == null) return head;
+        while(head.next != null) {
+            head = head.next;
+        }
+        return head;
     }
 
     public Node deleteDuplecate(Node head) {
